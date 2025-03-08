@@ -42,8 +42,13 @@ Quantizing qwen2.5-instruct-14b to create a model that achieves competitive resu
 
 ## Repository Structure
 
+- `/src`: Source code for quantization and benchmarking
+  - `quantize_qwen.py`: Script for quantizing Qwen2.5-Instruct-14B models
+  - `benchmark_quantized_models.py`: Script for benchmarking individual models
+  - `compare_quantized_models.py`: Script for comparing multiple quantized models
 - `/notebooks`: Jupyter notebooks with experiments and benchmark tests
-- `/models`: Quantized model files or scripts to generate them
+  - `HumanEval_benchmark.ipynb`: Notebook for running HumanEval benchmarks
+- `/models`: Storage for quantized model files or scripts to generate them
 - `/results`: Benchmark results and performance comparisons
 - `/docs`: Additional documentation on methodologies
 
@@ -56,10 +61,43 @@ cd teeny
 
 # Install requirements
 pip install -r requirements.txt
+pip install -r benchmark_requirements.txt
 
-# Run the benchmark tests
-jupyter notebook notebooks/benchmark_tests.ipynb
+# For Windows users, use the batch file to install dependencies
+.\install_benchmark_dependencies.bat
+
+# Quantize a model
+python src/quantize_qwen.py --model_id "Qwen/Qwen2.5-14B-Instruct" --method gptq --bits 4
+
+# Benchmark a single model
+python src/benchmark_quantized_models.py --model_path "./models/qwen_gptq_4bit" --save_results --visualize
+
+# Compare multiple models
+python src/compare_quantized_models.py --model_paths "./models/qwen_gptq_4bit" "./models/qwen_int8" "./models/qwen_awq_4bit"
+
+# Run HumanEval benchmark
+jupyter notebook notebooks/HumanEval_benchmark.ipynb
 ```
+
+## Benchmarking Tools
+
+The project includes comprehensive tools for benchmarking and comparing quantized models:
+
+### Single Model Benchmarking (`benchmark_quantized_models.py`)
+
+This script measures:
+- Model size and parameter count
+- Memory usage (CPU and GPU)
+- Inference speed (tokens per second)
+- HumanEval benchmark performance (optional)
+
+### Multi-Model Comparison (`compare_quantized_models.py`)
+
+This script compares multiple models and generates:
+- Comparative visualizations including bar charts and radar plots
+- Model size, memory usage, and inference speed comparisons
+- Combined efficiency scores
+- Detailed markdown summary reports
 
 ## Why "Teeny"?
 
