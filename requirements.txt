@@ -1,0 +1,35 @@
+# Core dependencies
+torch>=2.0.0
+transformers>=4.30.0
+accelerate>=0.21.0
+optimum>=1.8.0
+bitsandbytes>=0.39.0
+numpy>=1.24.0
+scipy>=1.10.0
+tqdm>=4.65.0
+
+# GPTQ dependencies
+auto-gptq>=0.4.0
+optimum-intel>=1.8.1
+
+# GGUF dependencies
+ctransformers>=0.2.24
+
+# AWQ dependencies
+autoawq>=0.1.5
+
+# Evaluation
+datasets>=2.12.0
+evaluate>=0.4.0
+human-eval>=1.0.0
+
+# Visualization
+matplotlib>=3.7.1
+seaborn>=0.12.2
+
+# Utilities
+pyyaml>=6.0
+huggingface-hub>=0.16.4
+safetensors>=0.3.1
+jupyter>=1.0.0
+ipywidgets>=8.0.6 
