@@ -11,7 +11,13 @@ LLM quantization reduces the precision of model weights and activations to decre
 - `quantize_llm.py`: Main script for quantizing models using various methods (GPTQ, AWQ, Int8, FP16)
 - `visualize_quantization.py`: Script for creating visualizations of quantization results
 - `quantization_research.md`: Comprehensive overview of quantization techniques and research findings
-- `benchmark_results/`: Directory containing benchmark results for different models and methods
+- `src/`: Directory containing modular components:
+  - `quantize_qwen.py`: Specialized script for quantizing Qwen2.5 models
+  - `benchmark_quantized_models.py`: Standalone benchmarking tool for quantized models
+  - `compare_quantized_models.py`: Comparative analysis tool for multiple quantized models
+- `notebooks/`: Jupyter notebooks for interactive experimentation
+- `docs/`: Documentation for the project
+- `quantized_models/`: Directory containing quantized model outputs
 - `visualization_results/`: Directory containing visualized comparisons and metrics
 
 ## Quantization Methods
@@ -57,6 +63,7 @@ pip install -r requirements.txt
 
 ### Quantizing a Model
 
+#### Using the Main Script
 ```bash
 # Basic Int8 quantization
 python quantize_llm.py --model_id "Qwen/Qwen2.5-7B-Instruct" --method int8 --benchmark
@@ -66,6 +73,25 @@ python quantize_llm.py --model_id "Qwen/Qwen2.5-7B-Instruct" --method gptq --bit
 
 # 4-bit AWQ quantization
 python quantize_llm.py --model_id "Qwen/Qwen2.5-7B-Instruct" --method awq --bits 4 --benchmark --humaneval
+```
+
+#### Using the Specialized Qwen Quantization Script
+```bash
+# Quantize Qwen 14B model with GPTQ
+python src/quantize_qwen.py --model_id "Qwen/Qwen2.5-14B-Instruct" --method gptq --bits 4
+
+# Quantize with bitsandbytes
+python src/quantize_qwen.py --model_id "Qwen/Qwen2.5-14B-Instruct" --method bitsandbytes --bits 8
+```
+
+### Benchmarking and Comparison
+
+```bash
+# Benchmark a single quantized model
+python src/benchmark_quantized_models.py --model_path "./quantized_models/Qwen2.5-14B-Instruct-gptq-4bit" --output_dir "./benchmark_results" --run_humaneval
+
+# Compare multiple quantized models
+python src/compare_quantized_models.py --model_paths "./quantized_models/model1" "./quantized_models/model2" --model_names "GPTQ-4bit" "AWQ-4bit" --output_dir "./comparison_results"
 ```
 
 ### Visualizing Results
