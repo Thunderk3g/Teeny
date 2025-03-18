@@ -1,0 +1,62 @@
+{
+    "fp16": {
+        "model_size": {
+            "size_mb": 1024,
+            "size_gb": 1.0,
+            "param_count": 500000000,
+            "param_count_billions": 0.5
+        },
+        "memory_usage": {
+            "cpu_memory_gb": 2.5,
+            "gpu_memory_allocated_gb": 1.2,
+            "gpu_memory_reserved_gb": 1.5
+        },
+        "inference_speed": {
+            "avg_generation_time": 0.25,
+            "avg_tokens_per_second": 40.0
+        },
+        "humaneval_results": {
+            "pass@1": 0.35
+        }
+    },
+    "int8": {
+        "model_size": {
+            "size_mb": 512,
+            "size_gb": 0.5,
+            "param_count": 500000000,
+            "param_count_billions": 0.5
+        },
+        "memory_usage": {
+            "cpu_memory_gb": 2.2,
+            "gpu_memory_allocated_gb": 0.8,
+            "gpu_memory_reserved_gb": 1.0
+        },
+        "inference_speed": {
+            "avg_generation_time": 0.3,
+            "avg_tokens_per_second": 32.0
+        },
+        "humaneval_results": {
+            "pass@1": 0.32
+        }
+    },
+    "int4": {
+        "model_size": {
+            "size_mb": 256,
+            "size_gb": 0.25,
+            "param_count": 500000000,
+            "param_count_billions": 0.5
+        },
+        "memory_usage": {
+            "cpu_memory_gb": 2.0,
+            "gpu_memory_allocated_gb": 0.5,
+            "gpu_memory_reserved_gb": 0.7
+        },
+        "inference_speed": {
+            "avg_generation_time": 0.35,
+            "avg_tokens_per_second": 28.0
+        },
+        "humaneval_results": {
+            "pass@1": 0.28
+        }
+    }
+}

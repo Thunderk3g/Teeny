@@ -1,0 +1,4 @@
+Method,Model Size (GB),Inference Speed (tokens/sec),GPU Memory (GB),HumanEval Pass@1
+fp16,1.0,40.0,1.2,0.35
+int8,0.5,32.0,0.8,0.32
+int4,0.25,28.0,0.5,0.28
